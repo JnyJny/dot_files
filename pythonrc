@@ -1,0 +1,115 @@
+"""Erik's interactive fix-ups
+"""
+try:
+    import sys
+    import readline
+    import rlcompleter
+except ImportError:
+    print("Python shell enhancement modules not available. Vanilla for you.")
+else:
+
+    def rainbow(string,colors=None,background=''):
+        '''
+        :param string:      string to be rainbow'ed
+        :param colors:      optional list of color names
+        :param background:  optional background color
+        '''
+        
+        import colorama
+        
+        if colors is None:
+            ColorDict = colorama.ansi.Fore.__dict__
+            colors = [c for n,c in ColorDict.items() if n not in ['RESET']]
+        else:
+            colors = [getattr(colorama.ansi.Fore,C.upper()) for C in colors]
+
+        result = []
+        if background != '':
+            background = getattr(colorama.ansi.Back,background.upper())
+
+        try:
+            colors.remove(background)
+        except ValueError:
+            pass
+
+        if len(string) > len(colors):
+            colors *= len(string)
+            
+        result = [background]
+            
+        for pair in zip(colors,string):
+            result.extend(pair)
+            
+        result.append(colorama.ansi.Fore.RESET)
+        result.append(colorama.ansi.Back.RESET)
+
+        return ''.join(result)
+
+    
+    class EriksTabCompleter(rlcompleter.Completer):
+        tab = ' ' * 4
+        '''
+        XXX because I don't understand it (yet), complete emits
+            a newline as a side-effect instead of just appending
+            more "tabs" to the command line.  It doesn't break
+            anything, it's just sort of annoying.
+        '''
+        def complete(self,text,state):
+            if not text:
+                return (self.tab,None)[state]            
+            return super(EriksTabCompleter,self).complete(text,state)
+        
+    class EriksColorPrompt(object):
+        def __init__(self,prompt,foreground='green',background='black'):
+            '''
+            prompt     : string 
+            foreground : colorama.ansi.Fore.<color>
+            background : colorama.ansi.Back.<color>
+            '''
+
+            import colorama
+
+            self.foreground = getattr(colorama.ansi.Fore,foreground.upper())
+            self.background = getattr(colorama.ansi.Fore,background.upper())
+            self.prompt      = prompt
+            self.reset       = colorama.ansi.Fore.RESET
+            self.reset      += colorama.ansi.Back.RESET
+            self.reset      += colorama.ansi.Style.NORMAL
+            self.pad         = ' '
+            
+        def __str__(self):
+            s = [self.background,
+                 self.foreground,
+                 self.prompt,
+                 self.reset,    # clears colors and styles
+                 self.pad]
+            return ''.join(s)
+
+    def EriksSetup():
+        '''
+        
+        '''
+        #if sys.platform == 'darwin':
+        #    readline.set_completer(EriksTabCompleter().complete)
+        #    readline.parse_and_bind("bind -e")
+        #    readline.parse_and_bind("bind '\t' rl_complete")
+        #else:
+        #    readline.parse_and_bind("tab: complete")
+
+        sys.ps1=EriksColorPrompt('>','green')
+        sys.ps2=EriksColorPrompt('.','red')
+
+        SuperAwesome = ['red','yellow','green','cyan','magenta']
+        turbo = rainbow('turbo-charged',colors=SuperAwesome,background='blue')
+        pyrc = rainbow(' ~/.pythonrc',colors=['red'])
+        print("Executed %s, interactive experience now %s." % (pyrc,turbo))
+
+    # XXX unpollute interpreter's name space.
+    #     alternately, could import a bunch of stuff pre-emptively
+
+    EriksSetup()
+    del readline, rlcompleter, sys, EriksSetup
+
+
+    
+

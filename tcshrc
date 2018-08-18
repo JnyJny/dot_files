@@ -1,0 +1,93 @@
+#.tcshrc (erik@ozymandius.austin.ibm.com)  - coopinc
+#        (eriko@burn.austin.ibm.com)       - coop
+#        (eriko@pamcam.austin.ibm.com)     - contractor
+#        (eriko@lighthouse.austin.ibm.com) - contractor
+#        (eriko@toolbox.austin.ibm.com)    - contractor
+#        (eriko@majestic.austin.ibm.com)   - regular
+#        (eriko@lankhmar)		   - at home
+#        (eriko@xenolab.com)		   - at home
+#        (eriko@schwa.central.sun.com)     - regular
+#        (eriko@blackoil) 		   - dell inspiron 5000
+#        (eriko@blackoil) 		   - dell inspiron 8600
+#         (erik@blackoil) 		   - mac book pro
+#          (ejo@blackoil) 		   - mac book pro
+
+bindkey -e
+
+unsetenv PATH
+unset    PATH
+unset    autologout
+
+setenv PAGER less
+setenv LESS "-MXFR"
+setenv EDITOR vi
+setenv VISUAL vi
+setenv CC cc
+
+set prompt="%m:%n:%c -> "
+
+set    filec
+umask  022
+
+setenv history 1024
+
+setenv ARCH `/usr/bin/uname -m`
+
+#setenv PYVER 3.6
+setenv PYTHONDONTWRITEBYTECODE "nobytecode"
+#setenv PYBIN /Library/Frameworks/Python.framework/Versions/${PYVER}/bin
+setenv PYTHONSTARTUP ~/.pythonrc
+
+# Local paths
+#
+setenv LOCAL /bin
+setenv LOCAL ${LOCAL}:/usr/bin 
+setenv LOCAL ${LOCAL}:/sbin 
+setenv LOCAL ${LOCAL}:/usr/sbin
+setenv LOCAL ${LOCAL}:/usr/local/bin 
+setenv LOCAL ${LOCAL}:/usr/local/games 
+setenv LOCAL ${LOCAL}:/usr/local/sbin
+setenv LOCAL ${LOCAL}:/opt/local/bin 
+setenv LOCAL ${LOCAL}:/opt/local/sbin 
+setenv LOCAL ${LOCAL}:/usr/X11R6/bin
+setenv LOCAL ${LOCAL}:/usr/games
+setenv LOCAL ${LOCAL}:/usr/local/mysql/bin
+setenv LOCAL ${LOCAL}:${PYBIN}
+
+# Apple Developer Paths
+
+setenv APPLE /Developer/usr/bin
+setenv LOCAL ${LOCAL}:${APPLE}
+setenv ERIKS $HOME/bin
+
+# Horrifing 
+
+# ImageMagick
+
+setenv IMAGEMAGICK /ImageMagick-6.8.6
+setenv LOCAL ${LOCAL}:${IMAGEMAGICK}/bin
+
+# Anaconda
+setenv ANACONDA /anaconda/bin
+setenv LOCAL ${ANACONDA}:${LOCAL}
+
+# Final path construction
+#
+setenv PATH ${LOCAL}:${ERIKS}:.
+
+unsetenv ERIKS LOCAL APPLE
+
+# ALIASES
+#
+alias emacs    /usr/local/bin/emacs -nw
+
+
+alias bak    "rm -f *~ .*~ #* >& /dev/null"
+alias bc     "bc -l"
+alias tarcp  "tar cf - \!:1 | ( cd \!:2 ; tar xf - )"
+alias j      jobs -l
+alias rm     rm -f
+alias src    "source ~/.tcshrc"
+alias ls     "ls-F"
+
+

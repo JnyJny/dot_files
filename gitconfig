@@ -1,0 +1,13 @@
+[user]
+	name = "Erik OShaughnessy"
+	email = erik.oshaughnessy@gmail.com
+[credential]
+	helper = osxkeychain
+[push]
+	default = simple
+[http]
+#	proxy = http://www-proxy.us.oracle.com:80
+[https]
+#	proxy = http://www-proxy.us.oracle.com:80
+[core]
+	editor = emacs
