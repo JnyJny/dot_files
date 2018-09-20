@@ -5,8 +5,8 @@ SRC= bashrc bashpy emacs gitconfig profile pythonrc tcshrc
 DST= $(SRC:%=${HOME}/.%)
 
 # Macro: LINK filename
-#        creates a symbolic link between $PWD/filename and $HOME/.filename
-LINK= ln -sf $(PWD)/$(1) $(HOME)/.$(1)
+#        creates a hard link between $PWD/filename and $HOME/.filename
+LINK= ln -f $(PWD)/$(1) $(HOME)/.$(1)
 
 .PHONY: help list link $(SRC) README.md
 
