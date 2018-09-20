@@ -1,6 +1,5 @@
 # .bashrc
 
-
 function conditional_source () {
     if [[ -a $@ ]]; then
 	source $@
@@ -18,9 +17,6 @@ export EDITOR=vi
 export VISUAL=vi
 
 export PYTHONSTARTUP=~/.pythonrc
-
-ANACONDA=/anaconda/bin
-export PATH=${ANACONDA}:${PATH}
 
 alias bak='rm *~ .*~ \#* >& /dev/null'
 alias df='df -H'
