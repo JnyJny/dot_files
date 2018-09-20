@@ -1,6 +1,6 @@
 # Dot Files 
 
-SRC= bashrc bashpy emacs gitconfig profile pythonrc tcshrc
+SRC= bashrc bashpy emacs gitconfig profile pythonrc pyreqs tcshrc
 
 DST= $(SRC:%=${HOME}/.%)
 
