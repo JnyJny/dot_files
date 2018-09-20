@@ -1,6 +1,8 @@
 [user]
 	name = "JnyJny"
 	email = erik.oshaughnessy@gmail.com
+[credential]
+	helper = cache
 [push]
 	default = simple
 [core]
