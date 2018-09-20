@@ -1,8 +1,6 @@
 [user]
 	name = "JnyJny"
 	email = erik.oshaughnessy@gmail.com
-[credential]
-	helper = store
 [push]
 	default = simple
 [core]
