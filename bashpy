@@ -1,37 +1,17 @@
 # bashpy
 
-function rmvenv() {
-    VENV_ROOT=$HOME/.venv
-    pushd $HOME/.venv
-    rm -rf $@ >& /dev/null
-    popd
+function activate {
+    if [[ -d .venv ]]; then
+	source .venv/bin/activate
+	return
+    fi
+    P=`basename $PWD`
+    python3 -m venv --symlink --prompt ${P:0:3} .venv
+    source .venv/bin/activate
+    pip install -U pip
+    if [[ -x ~/.pyreqs ]]; then
+        pip install -r ~/.pyreqs
+    fi
 }
 
-function venv() {
-    VENV_ROOT=$HOME/.venv
-    VENV="$VENV_ROOT/$1"
-
-    # create ~/.venv 
-    if [[ ! -d $VENV_ROOT ]]; then
-	mkdir $VENV_ROOT
-	return
-    fi
-
-    # list available venv's
-    if [[ ${@} == "" ]]; then
-	/bin/ls -C1 $VENV_ROOT
-	return
-    fi
-
-    # activate an existing venv
-    if [[ -d ${VENV} ]]; then
-	source $VENV/bin/activate
-	return
-    fi
-
-    # create, activate and update pip in a new venv
-    python3 -m venv $VENV
-    source $VENV/bin/activate
-    pip -qqq install --upgrade pip
-}
-
+export PYTHONDONTBYTECOMPILE=1
