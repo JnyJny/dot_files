@@ -18,4 +18,4 @@ function activate {
 }
 
 export PYTHONSTARTUP=~/.pythonrc
-export PYTHONDONTBYTECOMPILE=1
+export PYTHONDONTWRITEBYTECODE=1
