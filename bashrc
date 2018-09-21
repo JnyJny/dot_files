@@ -15,6 +15,7 @@ export LESS="-MXFR"
 export EDITOR=vi
 export VISUAL=vi
 
+alias src='source $HOME/.bash_profile'
 alias bak='rm *~ .*~ \#* >& /dev/null'
 alias df='df -H'
 alias j='jobs -l'
