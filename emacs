@@ -23,18 +23,18 @@
 
 (add-to-list 'load-path "/Users/ejo/.emacs.d/lisp")
 
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+;;(require 'web-mode)
+;;(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 
-(require 'kivy-mode)
-(add-to-list 'auto-mode-alist '("\\.kv\\'" . kivy-mode))
+;;(require 'kivy-mode)
+;;(add-to-list 'auto-mode-alist '("\\.kv\\'" . kivy-mode))
 
 ;; markdown
-(autoload 'markdown-mode "markdown-mode"
-  "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+;;(autoload 'markdown-mode "markdown-mode"
+;;  "Major mode for editing Markdown files" t)
+;;(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+;;(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+;;(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 
 ;; Keys I'm used to.

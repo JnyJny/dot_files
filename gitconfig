@@ -2,7 +2,7 @@
 	name = JnyJny
 	email = erik.oshaughnessy@gmail.com
 [credential]
-	helper = osxkeychain
+	helper = cache
 [push]
 	default = simple
 [core]
