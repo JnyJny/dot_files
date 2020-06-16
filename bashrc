@@ -11,7 +11,7 @@ conditional_source $HOME/.bashpy
 export PS1="\h:\W -> "
 
 export PAGER=less
-export LESS="-MXFR"
+export LESS="-MXR"
 export EDITOR=vi
 export VISUAL=vi
 
