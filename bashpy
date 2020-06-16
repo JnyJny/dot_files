@@ -8,9 +8,12 @@ function activate {
     P=`basename $PWD`
     python3 -m venv --symlink --prompt ${P:0:3} .venv
     source .venv/bin/activate
-    pip install -U pip
-    if [[ -x ~/.pyreqs ]]; then
-        pip install -r ~/.pyreqs
+    pip install -qqqU pip
+    if [ -f ~/.pyreqs ]; then
+        pip install -qqqr ~/.pyreqs
+    fi
+    if [ -f requirements.txt ]; then
+        pip install -qqqr requirements.txt
     fi
 }
 

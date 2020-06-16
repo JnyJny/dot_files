@@ -8,22 +8,27 @@ DST= $(SRC:%=${HOME}/.%)
 #        creates a hard link between $PWD/filename and $HOME/.filename
 LINK= ln -f $(PWD)/$(1) $(HOME)/.$(1)
 
-.PHONY: help list link $(SRC) README.md
+# Macro: COPY filename
+#        copies $PWD/filename to $HOME/.filename
 
-all: link
+COPY= cp --remove-destination $(PWD)/$(1) $(HOME)/.$(1)
+
+.PHONY: help list link copy $(SRC) README.md
+
+all: copy
 
 help:
 	@echo "Dot file targets"
 	@echo "list - show current status of dot files"
 	@echo "link - OVERWRITES EXISTING DOT FILES"
 
+copy: $(SRC)
+
 list: 
 	@ls -l $(DST) | awk '{printf("%s\t->\t%s\n",$$9, $$11)}'
 
-link: $(SRC)
-
-$(SRC): 
-	@$(call LINK,$@)
+$(SRC):
+	-@$(call COPY,$@)
 
 clean:
 	@rm -rf *~ .*~
